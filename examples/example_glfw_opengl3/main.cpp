@@ -180,7 +180,7 @@ int main(int, char**)
             ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, { 12.0f, 6.0f });
             ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
             ImGui::PopStyleVar();
-
+            ImGui::Spacing();
             ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
             ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
             ImGui::Checkbox("Another Window", &show_another_window);

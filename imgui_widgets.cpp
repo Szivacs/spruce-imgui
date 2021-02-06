@@ -1309,7 +1309,7 @@ void ImGui::Spacing()
     ImGuiWindow* window = GetCurrentWindow();
     if (window->SkipItems)
         return;
-    ItemSize(ImVec2(0, 0));
+    ItemSize(GImGui->Style.ItemSpacing); // ! changed
 }
 
 void ImGui::Dummy(const ImVec2& size)
