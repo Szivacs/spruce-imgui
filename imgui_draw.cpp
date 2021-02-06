@@ -392,7 +392,7 @@ void ImGui::StyleSpruce(ImGuiStyle* dst)
     style->Colors[ImGuiCol_TitleBg] = darkGrey;
     style->Colors[ImGuiCol_TitleBgActive] = darkGrey;
     style->Colors[ImGuiCol_TitleBgCollapsed] = darkGrey;
-    style->Colors[ImGuiCol_MenuBarBg] = grey;
+    style->Colors[ImGuiCol_MenuBarBg] = darkGrey;
     style->Colors[ImGuiCol_ScrollbarBg] = grey;
     style->Colors[ImGuiCol_ScrollbarGrab] = darkGrey;
     style->Colors[ImGuiCol_ScrollbarGrabHovered] = darkGrey;
@@ -439,7 +439,7 @@ void ImGui::StyleSpruce(ImGuiStyle* dst)
     style->WindowMenuButtonPosition = ImGuiDir_Right;
     style->WindowTitleAlign = { 0.5f, 0.5f };
     style->WindowPadding = { 0.0f, 0.0f }; // ! I don't know about this
-    style->WindowRounding = 5.0f;
+    style->WindowRounding = 0;
     style->ItemSpacing = { 5.0f, 5.0f };
     style->FrameRounding = 3.0f;
     style->FramePadding = { 8.0f, 6.0f };
