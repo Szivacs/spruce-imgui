@@ -290,6 +290,7 @@ namespace ImGui
     IMGUI_API void          StyleColorsDark(ImGuiStyle* dst = NULL);    // new, recommended style (default)
     IMGUI_API void          StyleColorsLight(ImGuiStyle* dst = NULL);   // best used with borders and a custom, thicker font
     IMGUI_API void          StyleColorsClassic(ImGuiStyle* dst = NULL); // classic imgui style
+    IMGUI_API void          StyleSpruce(ImGuiStyle* dst = NULL); // ! modified: added spruce style theme
 
     // Windows
     // - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.

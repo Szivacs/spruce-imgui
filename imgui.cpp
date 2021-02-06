@@ -5881,7 +5881,7 @@ void ImGui::RenderWindowTitleBarContents(ImGuiWindow* window, const ImRect& titl
     if (has_collapse_button && style.WindowMenuButtonPosition == ImGuiDir_Right)
     {
         pad_r += button_sz;
-        collapse_button_pos = ImVec2(title_bar_rect.Max.x - pad_r - style.FramePadding.x, title_bar_rect.Min.y);
+        collapse_button_pos = ImVec2(title_bar_rect.Max.x - pad_r - style.FramePadding.x * 2.0f, title_bar_rect.Min.y); // ! changed
     }
     if (has_collapse_button && style.WindowMenuButtonPosition == ImGuiDir_Left)
     {
@@ -8584,6 +8584,7 @@ void ImGui::BeginTooltipEx(ImGuiWindowFlags extra_flags, ImGuiTooltipFlags toolt
                 ImFormatString(window_name, IM_ARRAYSIZE(window_name), "##Tooltip_%02d", ++g.TooltipOverrideCount);
             }
     ImGuiWindowFlags flags = ImGuiWindowFlags_Tooltip | ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoDocking;
+    PushStyleVar(ImGuiStyleVar_WindowPadding, { 5.0f, 3.0f });
     Begin(window_name, NULL, flags | extra_flags);
 }
 
@@ -8591,6 +8592,7 @@ void ImGui::EndTooltip()
 {
     IM_ASSERT(GetCurrentWindowRead()->Flags & ImGuiWindowFlags_Tooltip);   // Mismatched BeginTooltip()/EndTooltip() calls
     End();
+    PopStyleVar();
 }
 
 void ImGui::SetTooltipV(const char* fmt, va_list args)
@@ -8841,6 +8843,7 @@ bool ImGui::BeginPopupEx(ImGuiID id, ImGuiWindowFlags flags)
         ImFormatString(name, IM_ARRAYSIZE(name), "##Popup_%08x", id); // Not recycling, so we can close/open during the same frame
 
     flags |= ImGuiWindowFlags_Popup | ImGuiWindowFlags_NoDocking;
+    PushStyleVar(ImGuiStyleVar_WindowPadding, { 5.0f, 5.0f }); // ! added
     bool is_open = Begin(name, NULL, flags);
     if (!is_open) // NB: Begin can return false when the popup is completely clipped (e.g. zero size display)
         EndPopup();
@@ -8883,6 +8886,7 @@ bool ImGui::BeginPopupModal(const char* name, bool* p_open, ImGuiWindowFlags fla
     }
 
     flags |= ImGuiWindowFlags_Popup | ImGuiWindowFlags_Modal | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking;
+    PushStyleVar(ImGuiStyleVar_WindowPadding, { 5.0f, 5.0f }); // ! added
     const bool is_open = Begin(name, p_open, flags);
     if (!is_open || (p_open && !*p_open)) // NB: is_open can be 'false' when the popup is completely clipped (e.g. zero size display)
     {
@@ -8910,6 +8914,7 @@ void ImGui::EndPopup()
     if (window->Flags & ImGuiWindowFlags_ChildWindow)
         g.WithinEndChild = true;
     End();
+    PopStyleVar(); // ! added
     g.WithinEndChild = false;
 }
 
@@ -13626,7 +13631,7 @@ static void ImGui::DockNodeUpdateTabBar(ImGuiDockNode* node, ImGuiWindow* host_w
     host_window->DrawList->AddRectFilled(title_bar_rect.Min, title_bar_rect.Max, title_bar_col, host_window->WindowRounding, ImDrawCornerFlags_Top);
 
     // Docking/Collapse button
-    if (has_window_menu_button)
+    if (has_window_menu_button && tab_bar->Tabs.Size > 1)
     {
         if (CollapseButton(host_window->GetID("#COLLAPSE"), window_menu_button_pos, node))
             OpenPopup("#WindowMenu");
@@ -13732,8 +13737,8 @@ static void ImGui::DockNodeUpdateTabBar(ImGuiDockNode* node, ImGuiWindow* host_w
                 node->WantCloseTabId = tab->ID;
                 TabBarCloseTab(tab_bar, tab);
             }
-        //if (IsItemActive())
-        //    focus_tab_id = tab_bar->SelectedTabId;
+        if (IsItemActive())
+            focus_tab_id = tab_bar->SelectedTabId;
         if (!node->VisibleWindow->HasCloseButton)
         {
             PopStyleColor();
@@ -13852,7 +13857,7 @@ static void ImGui::DockNodeCalcTabBarLayout(const ImGuiDockNode* node, ImRect* o
     if (out_title_rect) { *out_title_rect = r; }
 
     ImVec2 window_menu_button_pos = r.Min;
-    r.Min.x += g.Style.FramePadding.x;
+    // ! removed: r.Min.x += g.Style.FramePadding.x;
     r.Max.x -= g.Style.FramePadding.x;
     if (node->HasCloseButton)
     {

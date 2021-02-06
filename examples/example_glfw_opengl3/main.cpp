@@ -116,7 +116,7 @@ int main(int, char**)
     //io.ConfigViewportsNoTaskBarIcon = true;
 
     // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
+    ImGui::StyleSpruce();
     //ImGui::StyleColorsClassic();
 
     // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
@@ -149,7 +149,9 @@ int main(int, char**)
     // Our state
     bool show_demo_window = true;
     bool show_another_window = false;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+    ImVec4 clear_color = ImVec4(0, 0, 0, 1);
+
+    io.FontDefault = io.Fonts->AddFontFromFileTTF("../../misc/fonts/Rubik-Regular.ttf", 14.0f);
 
     // Main loop
     while (!glfwWindowShouldClose(window))

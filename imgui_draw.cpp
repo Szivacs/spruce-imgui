@@ -368,6 +368,85 @@ void ImGui::StyleColorsLight(ImGuiStyle* dst)
     colors[ImGuiCol_ModalWindowDimBg]       = ImVec4(0.20f, 0.20f, 0.20f, 0.35f);
 }
 
+void ImGui::StyleSpruce(ImGuiStyle* dst)
+{
+    ImGuiStyle* style = dst ? dst : &ImGui::GetStyle();
+
+    ImVec4 darkGrey = { 0.09411f, 0.09803f, 0.10196f, 1.0f };
+    ImVec4 grey = { 0.14117f, 0.14901f, 0.15686f, 1.0f };
+    ImVec4 lightGrey = { 0.18823f, 0.19215f, 0.19607f, 1.0f };
+    ImVec4 lightBlue = { 0.47058f, 0.64313f, 0.8f, 1.0f };
+    ImVec4 blue = { 0.38039f, 0.50980f, 0.62745f, 1.0f };
+    ImVec4 transparent = { 0, 0, 0, 0 };
+
+    style->Colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
+    style->Colors[ImGuiCol_TextDisabled] = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);
+    style->Colors[ImGuiCol_WindowBg] = grey;
+    style->Colors[ImGuiCol_ChildBg] = grey;
+    style->Colors[ImGuiCol_PopupBg] = darkGrey;
+    style->Colors[ImGuiCol_Border] = lightGrey;
+    style->Colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+    style->Colors[ImGuiCol_FrameBg] = darkGrey;
+    style->Colors[ImGuiCol_FrameBgHovered] = darkGrey;
+    style->Colors[ImGuiCol_FrameBgActive] = darkGrey;
+    style->Colors[ImGuiCol_TitleBg] = darkGrey;
+    style->Colors[ImGuiCol_TitleBgActive] = darkGrey;
+    style->Colors[ImGuiCol_TitleBgCollapsed] = darkGrey;
+    style->Colors[ImGuiCol_MenuBarBg] = grey;
+    style->Colors[ImGuiCol_ScrollbarBg] = grey;
+    style->Colors[ImGuiCol_ScrollbarGrab] = darkGrey;
+    style->Colors[ImGuiCol_ScrollbarGrabHovered] = darkGrey;
+    style->Colors[ImGuiCol_ScrollbarGrabActive] = darkGrey;
+    style->Colors[ImGuiCol_CheckMark] = blue;
+    style->Colors[ImGuiCol_SliderGrab] = blue;
+    style->Colors[ImGuiCol_SliderGrabActive] = lightBlue;
+    style->Colors[ImGuiCol_Button] = blue;
+    style->Colors[ImGuiCol_ButtonHovered] = lightBlue;
+    style->Colors[ImGuiCol_ButtonActive] = lightBlue;
+    style->Colors[ImGuiCol_Header] = grey;
+    style->Colors[ImGuiCol_HeaderHovered] = lightGrey;
+    style->Colors[ImGuiCol_HeaderActive] = lightGrey;
+    style->Colors[ImGuiCol_Separator] = darkGrey;
+    style->Colors[ImGuiCol_SeparatorHovered] = darkGrey;
+    style->Colors[ImGuiCol_SeparatorActive] = blue;
+    style->Colors[ImGuiCol_ResizeGrip] = transparent;
+    style->Colors[ImGuiCol_ResizeGripHovered] = transparent;
+    style->Colors[ImGuiCol_ResizeGripActive] = transparent;
+    style->Colors[ImGuiCol_Tab] = darkGrey;
+    style->Colors[ImGuiCol_TabHovered] = grey;
+    style->Colors[ImGuiCol_TabActive] = grey;
+    style->Colors[ImGuiCol_TabUnfocused] = darkGrey;
+    style->Colors[ImGuiCol_TabUnfocusedActive] = grey;
+    style->Colors[ImGuiCol_DockingPreview] = lightGrey;
+    style->Colors[ImGuiCol_DockingEmptyBg] = darkGrey;
+    style->Colors[ImGuiCol_PlotLines] = blue;
+    style->Colors[ImGuiCol_PlotLinesHovered] = lightBlue;
+    style->Colors[ImGuiCol_PlotHistogram] = blue;
+    style->Colors[ImGuiCol_PlotHistogramHovered] = lightBlue;
+    style->Colors[ImGuiCol_TableHeaderBg] = darkGrey;
+    style->Colors[ImGuiCol_TableBorderStrong] = darkGrey;
+    style->Colors[ImGuiCol_TableBorderLight] = darkGrey;
+    style->Colors[ImGuiCol_TableRowBg] = grey;
+    style->Colors[ImGuiCol_TableRowBgAlt] = lightGrey;
+    style->Colors[ImGuiCol_TextSelectedBg] = lightGrey;
+    style->Colors[ImGuiCol_DragDropTarget] = blue;
+    style->Colors[ImGuiCol_NavHighlight] = lightBlue;
+    style->Colors[ImGuiCol_NavWindowingHighlight] = lightBlue;
+    style->Colors[ImGuiCol_NavWindowingDimBg] = lightBlue;
+    style->Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.5f);
+
+    style->TabBorderSize = 0;
+    style->WindowMenuButtonPosition = ImGuiDir_Right;
+    style->WindowTitleAlign = { 0.5f, 0.5f };
+    style->WindowPadding = { 0.0f, 0.0f }; // ! I don't know about this
+    style->WindowRounding = 0;
+    style->ItemSpacing = { 5.0f, 5.0f };
+    style->FrameRounding = 3.0f;
+    style->ScrollbarRounding = 3.0f;
+    style->GrabRounding = 2.0f;
+    style->TabRounding = 3.0f;
+}
+
 //-----------------------------------------------------------------------------
 // [SECTION] ImDrawList
 //-----------------------------------------------------------------------------
