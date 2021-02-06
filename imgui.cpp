@@ -13676,6 +13676,9 @@ static void ImGui::DockNodeUpdateTabBar(ImGuiDockNode* node, ImGuiWindow* host_w
         backup_style_cols[color_n] = g.Style.Colors[GWindowDockStyleColors[color_n]];
 
     // Submit actual tabs
+
+    PushStyleVar(ImGuiStyleVar_ItemInnerSpacing, { 2.0f, 5.0f }); // ! added
+
     node->VisibleWindow = NULL;
     for (int window_n = 0; window_n < node->Windows.Size; window_n++)
     {
@@ -13711,6 +13714,8 @@ static void ImGui::DockNodeUpdateTabBar(ImGuiDockNode* node, ImGuiWindow* host_w
                 host_window->NavLastIds[1] = window->ID;
         }
     }
+
+    PopStyleVar(); // ! added
 
     // Restore style colors
     for (int color_n = 0; color_n < ImGuiWindowDockStyleCol_COUNT; color_n++)
@@ -13870,7 +13875,7 @@ static void ImGui::DockNodeCalcTabBarLayout(const ImGuiDockNode* node, ImRect* o
     else if (node->HasWindowMenuButton && g.Style.WindowMenuButtonPosition == ImGuiDir_Right)
     {
         r.Max.x -= g.FontSize + g.Style.FramePadding.x;
-        window_menu_button_pos = ImVec2(r.Max.x, r.Min.y);
+        window_menu_button_pos = ImVec2(r.Max.x - 5.0f, r.Min.y); // ! changed
     }
     if (out_tab_bar_rect) { *out_tab_bar_rect = r; }
     if (out_window_menu_button_pos) { *out_window_menu_button_pos = window_menu_button_pos; }

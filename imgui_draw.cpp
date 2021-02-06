@@ -439,9 +439,10 @@ void ImGui::StyleSpruce(ImGuiStyle* dst)
     style->WindowMenuButtonPosition = ImGuiDir_Right;
     style->WindowTitleAlign = { 0.5f, 0.5f };
     style->WindowPadding = { 0.0f, 0.0f }; // ! I don't know about this
-    style->WindowRounding = 0;
+    style->WindowRounding = 5.0f;
     style->ItemSpacing = { 5.0f, 5.0f };
     style->FrameRounding = 3.0f;
+    style->FramePadding = { 8.0f, 6.0f };
     style->ScrollbarRounding = 3.0f;
     style->GrabRounding = 2.0f;
     style->TabRounding = 3.0f;

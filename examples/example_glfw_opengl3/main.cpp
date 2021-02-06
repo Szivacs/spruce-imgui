@@ -177,7 +177,9 @@ int main(int, char**)
             static float f = 0.0f;
             static int counter = 0;
 
+            ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, { 12.0f, 6.0f });
             ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+            ImGui::PopStyleVar();
 
             ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
             ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
